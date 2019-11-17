@@ -68,4 +68,15 @@ public class DAODiscoImpl implements DAODisco {
         }
         return discoList;
     }
+
+    // TODO: Implementar este método
+    public List<Disco> getDiscosByNombreInterp(String nombreInterp){
+        List<Disco> discoList = new ArrayList<>();
+        return discoList;
+    }
+
+    // TODO: Implementar este método
+    public Disco insertDisco(Disco disco){
+        return disco;
+    }
 }
