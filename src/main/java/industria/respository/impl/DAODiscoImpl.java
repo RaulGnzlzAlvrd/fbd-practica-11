@@ -70,7 +70,7 @@ public class DAODiscoImpl implements DAODisco {
     }
 
     // TODO: Implementar este método
-    public List<Disco> getDiscosByNombreInterp(String nombreInterp){
+    public List<Disco> getDiscosByNombreInt(String nombreInt){
         List<Disco> discoList = new ArrayList<>();
         return discoList;
     }

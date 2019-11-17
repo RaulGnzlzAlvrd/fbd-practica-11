@@ -14,10 +14,10 @@ public interface DAODisco {
 
     /**
      * Obtiene todos los registros de la tabla Disco asociadas un nombreInterp
-     * @param nombreInterp
+     * @param nombreInt
      * @return List<Disco>
      */
-    List<Disco> getDiscosByNombreInterp(String nombreInterp);
+    List<Disco> getDiscosByNombreInt(String nombreInt);
 
     /**
      * Inserta un nuevo disco en la base de datos
