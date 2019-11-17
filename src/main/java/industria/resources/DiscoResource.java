@@ -17,4 +17,15 @@ public class DiscoResource {
     public List<Disco> discos() {
         return daoDisco.getAllDiscos();
     }
+
+    @RequestMapping(value = "/discosInterprete/{interprete}", method = RequestMethod.GET)
+    public List<Disco> getDiscosByNombreInt(@PathVariable(value = "interprete")String interprete){
+        return daoDisco.getDiscosByNombreInt(interprete);
+    }
+
+    @RequestMapping(value = "/disco", method = RequestMethod.POST)
+    public Disco insertDisco(@RequestBody Disco disco){
+        daoDisco.insertDisco(disco);
+        return disco;
+    }
 }
