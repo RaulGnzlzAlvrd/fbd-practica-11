@@ -72,11 +72,69 @@ public class DAODiscoImpl implements DAODisco {
     // TODO: Implementar este método
     public List<Disco> getDiscosByNombreInt(String nombreInt){
         List<Disco> discoList = new ArrayList<>();
+        //Leo query a ejecutar
+        String query = env.getProperty("searchByNombreInt");
+        //Preparo respuesta
+        Disco disco = new Disco();
+        try {
+            //Genero conexion
+            connection = dbConfig.dataSource().getConnection();
+            //Preparo base de datos para una instruccion
+            ps =  connection.prepareStatement(query);
+            ps.setString(1,nombreInt);
+            //Ejecuto Query
+            ResultSet rs = ps.executeQuery();
+            //Itero resultado
+            while (rs.next()) {
+                //Mappeo objetos de la base renglon por renglon
+                disco = new Disco(
+                        rs.getInt("num_ref")
+                        , rs.getString("album")
+                        , rs.getString("genero")
+                        , rs.getString("fecha_l")
+                        , rs.getString("disquera")
+                        , rs.getString("pais_disquera")
+                        , rs.getString("nombre_int")
+                );
+                //agrego objeto a resultado
+                discoList.add(disco);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
         return discoList;
     }
 
     // TODO: Implementar este método
     public Disco insertDisco(Disco disco){
+        String query = env.getProperty("insertDisco");
+        try {
+            connection = dbConfig.dataSource().getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setString(1,disco.getNum_ref());
+            ps.setString(2,disco.getAlbum());
+            ps.setString(3,disco.getGenero());
+            ps.setString(4,disco.getFecha_l());
+            ps.setString(5,disco.getDisquera());
+            ps.setString(6,disco.getPais_disquera());
+            ps.setString(7,disco.getNombre_int());
+            ps.executeUpdate();
+            connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
         return disco;
     }
 }
