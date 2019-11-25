@@ -117,7 +117,7 @@ public class DAODiscoImpl implements DAODisco {
         try {
             connection = dbConfig.dataSource().getConnection();
             ps = connection.prepareStatement(query);
-            ps.setString(1,disco.getNum_ref());
+            ps.setInt(1,disco.getNum_ref());
             ps.setString(2,disco.getAlbum());
             ps.setString(3,disco.getGenero());
             ps.setString(4,disco.getFecha_l());
